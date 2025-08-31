@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "concurrently -n VITE,LARAVEL \"npm run vite\" \"php artisan serve\"",
+        "vite": "vite"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.12",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
+        "axios": "^1.11.0",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^2.0.0",
+        "tailwindcss": "^4.1.12",
+        "postcss": "^8.5.6",
+        "vite": "^7.0.4"
+    },
+    "dependencies": {
+        "flyonui": "^2.4.0",
+        "vue": "3.5.19"
+    }
+}

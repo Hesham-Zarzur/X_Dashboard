@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "flyonui/variants.css";
+@plugin "flyonui";
+
+@source "./node_modules/flyonui/dist/index.js";
+
+@plugin "flyonui" {
+    themes: light --default, dark --prefersdark;
+}
