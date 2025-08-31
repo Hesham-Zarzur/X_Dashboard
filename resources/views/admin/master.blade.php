@@ -48,7 +48,7 @@
 
     <!-- Sidebar -->
     <aside id="sidebar"
-        class="sidebar-menu sidebar-collapsed fixed top-0 left-0 z-40 h-screen bg-base-100  text-gray shadow-2xl transition-all duration-1000 ease-in-out md:translate-x-0 group hover:w-64">
+        class="sidebar-menu sidebar-collapsed fixed top-0 left-0 z-40 h-screen bg-base-100  text-gray shadow-2xl transition-all duration-1000 ease-in-out md:translate-x-0 group hover:w-64 ">
         <!-- Logo -->
         <div class="flex items-center justify-center h-16 border-b border-primary-600">
             <i class="bi bi-twitter-x  font-bold text-2xl"></i>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- User Profile -->
-        <div class="p-4 border-b border-primary-600">
+        <div class="p-4 ">
             <div class="flex items-center">
                 <div class="relative flex justify-center">
                     <img src="https://ui-avatars.com/api/?name=Admin&background=ccc&color=000" alt="Profile"
@@ -119,9 +119,9 @@
         </nav>
 
         <!-- Logout Button -->
-        <div class="absolute bottom-0 w-full p-4 border-t border-primary-600">
+        <div class="absolute bottom-0 w-full p-2 border-t border-primary-600">
             <a href="{{ route('logout') }}" method="get"
-                class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-primary-800 hover:text-white transition-colors duration-200">
+                class="flex items-center px-4 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-primary-800 hover:text-white transition-colors duration-200">
                 <i class="bi bi-box-arrow-left text-lg"></i>
                 <span class="ml-3 sidebar-text group-hover:inline hidden">Logout</span>
             </a>
