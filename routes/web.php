@@ -12,13 +12,13 @@ use App\Http\Controllers\Cashier\DashboardController as CashierDashboardControll
 
 Route::get('/', fn() => view('index'))->middleware(['auth', 'verified'])->name('index');
 
-Route::get('/tailwind-test', function () {
+Route::get('/test', function () {
     return view('tailwind-test');
 });
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'role:Admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     // users

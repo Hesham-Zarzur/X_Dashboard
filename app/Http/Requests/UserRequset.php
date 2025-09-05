@@ -21,10 +21,11 @@ class UserRequset extends FormRequest
     public function rules(): array
     {
         $user = $this->user ?? 0;
+        
         return [
             'name'=> "required|string|max:255",
             'email'=> "required|string|email|unique:users,id,{$user}|max:124|",
-            'mobile' => "required|string|size:11|unique:users,id,{$user}|",
+            'mobile'=>['required', Rule::unique('users')->ignore($user)],
             'password'=> "nullable|string|max:24",
             'confirmPassword' => 'nullable|same:password',
             'role'=> "required|string|in:Admin,Cashier",

@@ -40,7 +40,7 @@ class UserController extends Controller
             'created_by'=> Auth::user()->id,
             'updated_by'=> Auth::user()->id,
     ]);
-    return redirect()->route('admin.users.list')->with('success','user add success');
+    return redirect()->route('admin.users.list')->with('success','user created success');
     }
 
 
@@ -49,9 +49,7 @@ class UserController extends Controller
         // return view('admin.users.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));
@@ -71,7 +69,7 @@ class UserController extends Controller
             'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
             'updated_by' => $request->user()->id,
         ]);
-        return redirect()->route('admin.users.edit',$user->code)->with('success','user updated success');
+        return redirect()->route('admin.users.edit',$user->code)->with('success','user updated');
     }
 
     /**

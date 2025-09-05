@@ -11,12 +11,12 @@
                     <li class="" aria-current="page">Create user</li>
                 </ul>
             </div>
-            <div class="card bg-white">
+            <div class="card ">
                 @if ($errors->any())
                     <div class="card-head">
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-danger">
+                        <div class="alert alert-error">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -34,10 +34,10 @@
                 <div class="flex justify-between ">
                     <h1 class="text-2xl font-semibold">Create User</h1>
                     <div class="flex gap-4">
-                        <a href="{{ route('admin.users.list') }}" class=" px-4 py-2 rounded-md btn btn-error ">
+                        <a href="{{ route('admin.users.list') }}" class=" px-4 py-2 rounded-md btn btn-error btn-soft">
                             Cancel
                         </a>
-                        <button class="btn btn-success  rounded-md" type="submit" form="add">Create</button>
+                        <button class="btn btn-success btn-soft rounded-md" type="submit" form="add">Create</button>
                     </div>
                 </div>
             </div>

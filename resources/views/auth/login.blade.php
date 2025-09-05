@@ -12,6 +12,14 @@
 
 <body>
     <main class="grid grid-cols-1 gap-0 md:grid-cols-2 h-screen ">
+        {{-- wellcome --}}
+        <section id="wellcome" class="flex justify-center items-center bg-base-300 ">
+            <div class="text-center text-primary">
+                <h1 class="font-extrabold mb-2 text-4xl">Welcome Back !</h1>
+                <p class="text-xl">To our <i class="bi bi-twitter-x"></i> dashdoard</p>
+            </div>
+        </section>
+
         {{-- login --}}
         <section id="login" class=" flex justify-center items-center">
             <div class="card shadow-none bg-transparent   w-2/3">
@@ -64,14 +72,6 @@
                         </div> --}}
                     </form>
                 </div>
-            </div>
-        </section>
-
-        {{-- wellcome --}}
-        <section id="wellcome" class="flex justify-center items-center bg-base-300">
-            <div class="text-center text-primary">
-                <h1 class="font-extrabold mb-2 text-4xl">Welcome Back !</h1>
-                <p class="text-xl">To our <i class="bi bi-twitter-x"></i> dashdoard</p>
             </div>
         </section>
     </main>

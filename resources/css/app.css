@@ -5,5 +5,5 @@
 @source "./node_modules/flyonui/dist/index.js";
 
 @plugin "flyonui" {
-    themes: light --default, dark --prefersdark;
+    themes: light --default, black --prefersdark;
 }

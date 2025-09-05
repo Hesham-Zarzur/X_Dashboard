@@ -3,8 +3,94 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="HESHAM.DEV" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
     <title>@yield('title')</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+    @if (!empty($assets))
+        @php $helpersUrl = 'https://cdn.jsdelivr.net/gh/yottaline/helpers@1.2.0'; @endphp
+        @if (in_array('vue', $assets))
+            <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        @endif
+        @if (in_array('jqv', $assets))
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+            <script src="{{ $helpersUrl }}/js/jquery_validator/extend.min.js"></script>
+        @endif
+        @if (in_array('recaptcha', $assets))
+            <script src="https://www.google.com/recaptcha/api.js?render={{ env('GOOGLE_RECAPTCHA_SITEKEY') }}"></script>
+        @endif
+        @if (in_array('swal', $assets))
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        @endif
+        @if (array_intersect(['moment', 'datetimepicker'], $assets))
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        @endif
+        @if (in_array('datetimepicker', $assets))
+            <link rel='stylesheet'
+                href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
+            <script
+                src='//cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'>
+            </script>
+            <script>
+                const dtp_opt = {
+                    icons: {
+                        time: 'bi bi-clock',
+                        date: 'bi bi-calendar',
+                        up: 'bi bi-chevron-up',
+                        down: 'bi bi-chevron-down',
+                        previous: 'bi bi-chevron-left',
+                        next: 'bi bi-chevron-right',
+                        today: 'bi bi-calendar2-event',
+                        clear: 'bi bi-eraser',
+                        close: 'bi bi-x'
+                    },
+                    format: "YYYY-MM-DD",
+                };
+            </script>
+        @endif
+        @if (in_array('select2', $assets))
+            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.13/dist/css/select2.min.css" rel="stylesheet" />
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.13/dist/js/select2.min.js"></script>
+            <script src="{{ $helpersUrl }}/js/select2/extend.min.js"></script>
+            <script src="{{ asset('assets/js/select2/i18n/ar.js?v=1.0.0') }}"></script>
+        @endif
+        @if (in_array('font-awesome', $assets))
+            <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'>
+            <!-- <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script> -->
+        @endif
+        @if (in_array('newWaterfall', $assets))
+            <script src="{{ asset('assets/newWaterfall/newWaterfall.js') }}"></script>
+        @endif
+        @if (in_array('dropify', $assets))
+            <link rel="stylesheet" href="{{ asset('assets/dropify-master/dist/css/dropify.min.css') }}">
+            <script src="{{ asset('assets/dropify-master/dist/js/dropify.min.js') }}"></script>
+        @endif
+        @if (in_array('toastr', $assets))
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            <script>
+                toastr.options.closeButton = true;
+                toastr.options.progressBar = true;
+                toastr.options.positionClass = "toast-bottom-left";
+                toastr.options.timeOut = 5000;
+                toastr.options.preventDuplicates = true;
+            </script>
+        @endif
+        @if (in_array('notyf', $assets))
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+        @endif
+        @if (in_array('counterup', $assets))
+            <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
+        @endif
+    @endif
+
+    <!-- Bootstrap Icons CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
@@ -20,6 +106,8 @@
         .sidebar-collapsed .sidebar-logo-text {
             @apply hidden;
         }
+
+
 
         /* Mobile sidebar */
         @media (max-width: 768px) {
@@ -59,8 +147,14 @@
         <div class="p-4 ">
             <div class="flex items-center">
                 <div class="relative flex justify-center">
-                    <img src="https://ui-avatars.com/api/?name=Admin&background=ccc&color=000" alt="Profile"
-                        title="{{ Auth::user()->name }}" class="w-10 h-10 rounded-full">
+                    @if (Auth::user()->role == 'Admin')
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=ccc&color=000" alt="Profile"
+                            title="{{ Auth::user()->name }}" class="w-10 h-10 rounded-full">
+                    @else
+                        <img src="https://ui-avatars.com/api/?name=Cashier&background=ccc&color=000" alt="Profile"
+                            title="{{ Auth::user()->name }}" class="w-10 h-10 rounded-full">
+                    @endif
+
                     <span
                         class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
                 </div>
@@ -131,7 +225,7 @@
     <!-- Header -->
     <header class="shadow-sm ">
         <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-lg font-semibold ">@yield('header', 'Page Title')</h1>
+            <h1 class="text-lg font-semibold select-none">@yield('header', 'Page Title')</h1>
         </div>
     </header>
 
@@ -140,28 +234,39 @@
         class="flex-1 md:ml-16 transition-all duration-1000 ease-in-out group-hover:md:ml-64 bg-base-300 text-base-100">
 
         <!-- Page Content -->
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            @yield('content')
-        </div>
+
+        <div class="min-h-screen w-full relative">
+            <div class="absolute inset-0 z-0"
+                style="
+     background-color: #0a0a0a;
+     background-image: radial-gradient(circle at 25% 25%, #222222 0.5px, transparent 1px),
+     radial-gradient(circle at 75% 75%, #111111 0.5px, transparent 1px);
+     background-size: 10px 10px;
+     image-rendering: pixelated;
+     ">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    @yield('content')
+                </div>
+            </div>
     </main>
 
     <!-- Footer -->
-    <footer class=" shadow-inner mt-auto bg-base-300 text-base-100 hover:text-white ">
+    <footer class=" shadow-inner mt-auto bg-base-300 text-base-100 hover:text-white select-none ">
         <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-sm ">
                     &copy; @php echo date('Y') @endphp Dashboard. All rights reserved.
                 </div>
                 <div class="mt-2 md:mt-0 text-sm ">
-                    Developed by <span class="text-primary-600 font-medium">HESHAM.<span
-                            class="text-primary">DEV</span></span>
+                    Developed by <span class="text-primary-600 font-medium"><span
+                            class="text-primary">HESHAM</span>.DEV
                 </div>
             </div>
         </div>
     </footer>
 
 
-    <script>
+    {{-- <script>
         // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -188,13 +293,19 @@
             });
 
             // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768) {
+            window.addEventListener('resize              if (window.innerWidth >= 768) {
                     sidebar.classList.remove('open');
                 }
             });
         });
+    </script> --}}
+    @yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jquery.vmap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/maps/jquery.vmap.world.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.1.0/dist/chartjs-plugin-datalabels.min.js">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 </body>
 
 </html>

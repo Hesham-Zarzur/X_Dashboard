@@ -18,7 +18,7 @@
 
             <div class="space-y-6">
                 <div class="flex flex-col items-center">
-                    @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'admin')
+                    @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Admin')
                         <a href="{{ route('admin.dashboard') }}"
                             class="bg-white text-purple-600 hover:bg-blue-650 px-8 py-3 rounded-full font-semibold transform hover:scale-105 bg-blue-650 transition duration-200 ease-in-out shadow-lg">
                             Admin Dashboard

@@ -1,8 +1,8 @@
-@extends('admin.master')
+@extends('admin.master', ['assets' => ['jqv', 'notyf']])
 @section('title', $user->role . ' ' . $user->name)
 @section('header', content: 'Profile')
 @section('content')
-    <div class="app container page ">
+    <div id="app" class=" container page ">
         <div class="page-head mb-3">
             <div class="breadcrumbs">
                 <ul class="text-lg ">
@@ -38,8 +38,13 @@
                         </h3>
                         <div class="w-full text-center">
                             <div class="relative flex justify-center ">
-                                <img src="https://ui-avatars.com/api/?name=Admin&background=ccc&color=000" alt="Profile"
-                                    title="{{ Auth::user()->name }}" class="w-25 h-25 rounded-full">
+                                @if ($user->role == 'Admin')
+                                    <img src="https://ui-avatars.com/api/?name=Admin&background=ccc&color=000"
+                                        alt="Profile" title="{{ $user->name }}" class="w-25 h-25 rounded-full">
+                                @else
+                                    <img src="https://ui-avatars.com/api/?name=Cashier&background=ccc&color=000"
+                                        alt="Profile" title="{{ $user->name }}" class="w-25 h-25 rounded-full">
+                                @endif
                             </div>
                         </div>
                         <h3 class="text-center font-semibold m-4 mb-0 ">{{ $user->name }}</h3>
@@ -128,4 +133,36 @@
 
     </div>
 
+@endsection
+@section('scripts')
+    @if (session('success'))
+        <script>
+            $(document).ready(function() {
+                const notyf = new Notyf({
+                    duration: 5000,
+
+                });
+
+                notyf.success(@json(session('success')));
+
+            });
+        </script>
+    @endif
+    @vite('resources/js/vue.js')
+    <script type="module">
+        createApp({
+            el: '#app',
+            data() {
+                return {
+
+
+                }
+            },
+            methods: {
+
+            },
+            mounted() {},
+
+        }).mount('#app')
+    </script>
 @endsection
