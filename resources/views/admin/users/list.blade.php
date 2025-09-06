@@ -3,16 +3,13 @@
 @section('header', 'Users')
 @section('content')
     <div id="app" class=" container page ">
-        <div class="page-head">
-            <div class="breadcrumbs">
+        <div class="page-head ">
+            {{-- <div class="breadcrumbs">
                 <ul class="">
-                    {{-- <li class="" aria-current="page">Users</li> --}}
-                    {{-- <li class="breadcrumbs-separator "> \ </li> --}}
+                    <li class="" aria-current="page">Users</li>
+                    <li class="breadcrumbs-separator "> \ </li>
                 </ul>
-            </div>
-        </div>
-        <div class="page-body text-base-200">
-
+            </div> --}}
             <div class="card mb-10">
                 <div class="card-body">
                     <div class="flex justify-between  px-6">
@@ -23,6 +20,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="page-body text-base-200">
+
 
             <div class="grid md:grid-cols-2 gap-4 ">
                 {{-- Admin List --}}
